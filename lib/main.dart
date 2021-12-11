@@ -54,9 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
                 final docData = snapshot.data!.docs[index].data();
-                final dateTime = (docData['timestamp'] as Timestamp).toDate();
                 return ListTile(
-                  title: Text(dateTime.toString()),
+                  title: Text(docData!.toString()),
                 );
               },
             );
