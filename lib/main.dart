@@ -50,6 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) return const SizedBox.shrink();
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (BuildContext context, int index) {
+                final docData = snapshot.data!.docs[index].data();
+                final dateTime = (docData['timestamp'] as Timestamp).toDate();
+                return ListTile(
+                  title: Text(dateTime.toString()),
+                );
+              },
+            );
           },
         ));
   }
